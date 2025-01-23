@@ -1,0 +1,5 @@
+# Node.js specific ignores
+node_modules/
+npm-debug.log
+.env
+.DS_Store # (macOS-specific)
