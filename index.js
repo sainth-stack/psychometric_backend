@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import userRoutes from "./routes/userRoutes.js";
+import userRoutes from "./routes/UserRoutes.js";
 import { PORT } from "./const/const.js";
 import connectDB from "./config/db/ConnectDb.js";
 
