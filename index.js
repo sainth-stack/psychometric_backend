@@ -19,6 +19,7 @@ app.use(express.json());
 // Routes
 app.use("/api/users", userRoutes);
 
+
 // Start server
 app.listen(PORT, async () => {
   try {

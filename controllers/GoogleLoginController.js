@@ -29,30 +29,30 @@ export const loginGoogleUser = async (req, res) => {
 
     let user = await UserModel.findOne({ email });
 
-     if (user) {
-       return res
-         .status(200)
-         .json({ error: "User Already Exist" });
-    }
-    
-    if (!user) {
-      user = await UserModel.create({
-        email,
-        name, 
+    if (user) {
+      // User exists, send user info
+      return res.status(200).json({
+        message: "User already exists",
+        token: jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1d" }),
+        user: { email: user.email, name: user.name }, // Send user data including email
       });
-    } else if (!user.name) {
-      user.name = name;
-      await user.save();
     }
+
+    // If user doesn't exist, create a new one
+    user = await UserModel.create({
+      email,
+      name,
+    });
 
     const jwtToken = jwt.sign({ id: user._id }, JWT_SECRET, {
       expiresIn: "1d",
     });
 
+    // Send user data including email on successful login
     res.status(200).json({
       message: "User logged in successfully",
       token: jwtToken,
-      user,
+      user: { email: user.email, name: user.name }, // Send email and name
     });
   } catch (error) {
     console.error("Error logging in user:", error.message);
