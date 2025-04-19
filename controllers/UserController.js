@@ -39,7 +39,9 @@ export const createUser = async (req, res) => {
 
 export const saveUserResults = async (req, res) => {
   try {
-    const { email, results } = req.body;
+    const { email, results, candidateId } = req.body;
+
+    console.log("candidateId at save results", req.body);
 
     if (!email || !results) {
       return res.status(400).json({ error: "Email and results are required" });
@@ -52,6 +54,9 @@ export const saveUserResults = async (req, res) => {
     }
 
     user.results = results; 
+     if (candidateId) {
+       user.candidateId = candidateId;
+     }
     await user.save();
 
     res.status(200).json({ message: "User results saved successfully", user });
