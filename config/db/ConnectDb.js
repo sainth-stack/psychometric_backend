@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const connectDB = async () => {
- const DATABASE_URL = `mongodb+srv://prashanth:BnHRQrqZHdnosfEe@cluster0.cpydc.mongodb.net/tax-filing5?retryWrites=true&w=majority`;
+ const DATABASE_URL = `mongodb+srv://prashanth:BnHRQrqZHdnosfEe@cluster0.cpydc.mongodb.net/CommonDatabase?retryWrites=true&w=majoritys`;
 
   try {
     const conn = await mongoose.connect(DATABASE_URL);
