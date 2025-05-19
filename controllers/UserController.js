@@ -2,6 +2,7 @@
 
 // @desc Get all users
 
+import { sendEmail } from "../config/sendMail.js";
 import UserModel from "../models/UserModel.js";
 import { successResponse } from "../utils/responseHandler.js";
 
@@ -39,7 +40,7 @@ export const createUser = async (req, res) => {
 
 export const saveUserResults = async (req, res) => {
   try {
-    const { email, results, candidateId } = req.body;
+    const { email, results, candidateId,hr } = req.body;
 
     console.log("candidateId at save results", req.body);
 
@@ -59,6 +60,18 @@ export const saveUserResults = async (req, res) => {
      }
     await user.save();
 
+    sendEmail(
+      hr,
+      "Assessment Submission Notification",
+      {
+        candidateEmail: email,
+        candidateId: candidateId || "Not Provided",
+        customMessage: `The candidate has successfully submitted the assessment.`,
+      },
+      true
+    );
+
+    
     res.status(200).json({ message: "User results saved successfully", user });
   } catch (error) {
     console.error("Error saving user results:", error.message);
