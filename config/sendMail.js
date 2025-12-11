@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 export const sendEmail = async (to, subject, body, useHtmlTemplate = false) => {
   console.log("body at mail", body );
   const mailOptions = {
-    from: "aneel@talentspotify.com",
+    from: "contact@talentspotify.com",
     to,
     subject,
     text: useHtmlTemplate ? undefined : body, 
