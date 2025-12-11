@@ -2,15 +2,14 @@ import {statusUpdateTemplate} from "./template.js";
 import nodemailer from 'nodemailer'
 // Configure the SMTP transporter
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
+  host: "smtp.office365.com",
+  port: 587,
   secure: true, // true for 465, false for 587
   auth: {
-    user: "vishnuvardhan6613@gmail.com",
-    pass: "ltbe agcb kerh wvwp",
+    user: "contact@talentspotify.com",
+    pass: "Talentspotify01$",
   },
 });
-
 
 export const sendEmail = async (to, subject, body, useHtmlTemplate = false) => {
   console.log("body at mail", body );
