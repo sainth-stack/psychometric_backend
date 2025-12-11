@@ -4,7 +4,11 @@ import nodemailer from 'nodemailer'
 const transporter = nodemailer.createTransport({
   host: "smtp.office365.com",
   port: 587,
-  secure: true, // true for 465, false for 587
+  secure: false, // true for 465, false for 587
+  requireTLS: true,
+  tls: {
+    minVersion: 'TLSv1.2',
+  },
   auth: {
     user: "contact@talentspotify.com",
     pass: "Talentspotify01$",
